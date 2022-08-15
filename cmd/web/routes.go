@@ -11,19 +11,24 @@ import (
 
 func routes(app *config.AppConfig) http.Handler {
 
-	// kreira novi mux koji sadrzi hendlere za rute
+	// creates new mux
 	mux := chi.NewRouter()
 
-	// ovde se dodaje middleware
+	// Add middleware to mux
 	mux.Use(middleware.Recoverer)
 	mux.Use(WriteToConsole)
 	mux.Use(NoSurf)
 	mux.Use(SessionLoad)
 
-	// dodaju se rute i njihovi hendleri
+	// Adds routes and handlers to mux
 	mux.Get("/", handlers.Repo.Home)
 	mux.Get("/about", handlers.Repo.About)
 
-	// vraca se mux
+	// creates handler for static files
+	fileServer := http.FileServer(http.Dir("./static/"))
+
+	// add handler for static files to mux
+	mux.Handle("/static/*", http.StripPrefix("/static", fileServer))
+
 	return mux
 }
