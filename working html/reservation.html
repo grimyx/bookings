@@ -8,13 +8,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker-bs4.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         .my-footer {
             height: 5em;
@@ -31,11 +26,6 @@
 
         .notie-container {
             box-shadow: none;
-        }
-
-
-        .datepicker {
-            z-index: 9999;
         }
     </style>
 </head>
@@ -96,13 +86,12 @@
                                     YYYY-MM-DD</small>
                             </div>
                         </div>
-
                         <div class="col">
                             <div class="form-group">
                                 <label for="ending_date">Ending date</label>
                                 <input type="text" class="form-control" id="ending_date" name="ending_date"
-                                    aria-describedby="endingDateHelp" required>
-                                <small id="endingDateHelp" class="form-text text-muted">Enter ending date in format
+                                    aria-describedby="startDateHelp" required>
+                                <small id="startDateHelp" class="form-text text-muted">Enter starting date in format
                                     YYYY-MM-DD</small>
                             </div>
                         </div>
@@ -114,85 +103,100 @@
         </div>
 
         <button id="someBtn" class="btn btn-outline-primary">Click Me</button>
-        <div class="row my-footer">
-            <div class="col">
-                Left
-            </div>
-            <div class="col">
-                Middle
-            </div>
-            <div class="col">
-                Right
-            </div>
+
+        <div>
+            <input type="text" id="proba">
         </div>
+    </div>
+    <div class="row my-footer">
+        <div class="col">
+            Left
+        </div>
+        <div class="col">
+            Middle
+        </div>
+        <div class="col">
+            Right
+        </div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
-            integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
 
-        <script src="https://unpkg.com/notie"></script>
+    <script src="https://unpkg.com/notie"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/plugins/rangePlugin.min.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
 
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function () {
-                'use strict';
-                window.addEventListener('load', function () {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.getElementsByClassName('needs-validation');
-                    // Loop over them and prevent submission
-                    var validation = Array.prototype.filter.call(forms, function (form) {
-                        form.addEventListener('submit', function (event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-                            form.classList.add('was-validated');
-                        }, false);
-                    });
-                }, false);
-            })();
-        </script>
+        const aa = flatpickr('#proba', {
+            mode: 'range',
 
-        <script>
+        })
+    </script>
 
-            function notify(msg, msgType) {
-                notie.alert({
-                    type: msgType, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
-                    text: msg,
-                })
-            }
+    <script>
 
-            function notifyModal(title, text, icon, btnText) {
-                Swal.fire({
-                    title: title,
-                    html: text,
-                    icon: icon,
-                    confirmButtonText: btnText
-                })
-            }
+        function notify(msg, msgType) {
+            notie.alert({
+                type: msgType, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+                text: msg,
+            })
+        }
 
-            const elem = document.getElementById('foo');
-            const rangepicker = new DateRangePicker(elem, {
-                format: 'yyyy-mm-dd',
-            });
+        function notifyModal(title, text, icon, btnText) {
+            Swal.fire({
+                title: title,
+                html: text,
+                icon: icon,
+                confirmButtonText: btnText
+            })
+        }
+        flatpickr('#start_date', {
+            mode: 'range',
+            plugins: [new rangePlugin({ input: "#ending_date" })]
+        })
 
-            const clickMe = document.getElementById('someBtn');
-            clickMe.addEventListener('click', () => {
-                // notify("This is my message !!!!", "success")
-                // notifyModal("Title", "<em>Hello world</em>", "success", "Click Me")
-                //Prompt().toast({ msg: "Hello world" })
+        /*
+        const elem = document.getElementById('foo');
+        const rangepicker = new DateRangePicker(elem, {
+            format: 'yyyy-mm-dd',
+        });
+        */
+        const clickMe = document.getElementById('someBtn');
+        clickMe.addEventListener('click', () => {
+            // notify("This is my message !!!!", "success")
+            // notifyModal("Title", "<em>Hello world</em>", "success", "Click Me")
+            //Prompt().toast({ msg: "Hello world" })
 
-                const html = `
+            const html = `
                     
                     <form id="checkAvailabilityForm" action="" method="post" novalidate class="needs-validation">
                         <div class="form-row">
@@ -209,122 +213,115 @@
                         </div>
                     </form>
                 `
-                //Prompt().success({ msg: "Hello world", title: "Ola" })
+            //Prompt().success({ msg: "Hello world", title: "Ola" })
 
-                Prompt().custom({ msg: html, title: 'Choose your dates' })
-            });
+            Prompt().custom({ msg: html, title: 'Choose your dates' })
+        });
 
-            function Prompt() {
-                const toast = function (c) {
+        function Prompt() {
+            const toast = function (c) {
 
-                    //  sets val names and default values, then destructures param c 
-                    // so if we did not specify position it will be top end
-                    const {
-                        msg = "",
-                        icon = "success",
-                        position = "top-end"
-                    } = c;
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        title: msg,
-                        icon: icon,
-                        position: position,
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-
-                    Toast.fire({
-                    })
-                }
-
-                const success = function (c) {
-
-                    const {
-                        msg = "",
-                        title = "",
-                        footer = ""
-                    } = c;
-                    Swal.fire({
-                        icon: 'success',
-                        title: title,
-                        text: msg,
-                        footer: footer
-                    })
-                }
-
-                const error = function (c) {
-
-                    const {
-                        msg = "",
-                        title = "",
-                        footer = ""
-                    } = c;
-                    Swal.fire({
-                        icon: 'error',
-                        title: title,
-                        text: msg,
-                        footer: footer
-                    })
-                }
-
-                async function custom(c) {
-                    const {
-                        msg = "",
-                        title = "",
-                    } = c
-
-
-                    const { value: formValues } = await Swal.fire({
-                        title: title,
-                        html: msg,
-                        backdrop: false,
-                        focusConfirm: false,
-                        showCancelButton: true,
-                        // lifecycle hook
-                        willOpen: () => {
-                            const elems = [document.getElementById('start'), document.getElementById('end')]
-                            console.log(elems)
-
-                            const elem = document.getElementById('reservation-dates-modal');
-                            const rp = new DateRangePicker(elem, {
-                                format: 'yyyy-mm-dd',
-                                showOnFocus: true,
-                                elemnts: elems,
-                            });
-
-                            console.log(rp)
-                        },
-                        // lifecycle hook
-                        preConfirm: () => {
-                            return [
-                                document.getElementById('start').value,
-                                document.getElementById('end').value
-                            ]
-                        },
-                        didOpen: () => {
-                            document.getElementById('start').removeAttribute('disabled')
-                            document.getElementById('end').removeAttribute('disabled')
-                        }
-                    })
-
-                    if (formValues) {
-                        Swal.fire(JSON.stringify(formValues))
+                //  sets val names and default values, then destructures param c 
+                // so if we did not specify position it will be top end
+                const {
+                    msg = "",
+                    icon = "success",
+                    position = "top-end"
+                } = c;
+                const Toast = Swal.mixin({
+                    toast: true,
+                    title: msg,
+                    icon: icon,
+                    position: position,
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
-                }
+                })
 
-                return ({
-                    toast: toast,
-                    success: success,
-                    error: error,
-                    custom: custom
+                Toast.fire({
                 })
             }
-        </script>
+
+            const success = function (c) {
+
+                const {
+                    msg = "",
+                    title = "",
+                    footer = ""
+                } = c;
+                Swal.fire({
+                    icon: 'success',
+                    title: title,
+                    text: msg,
+                    footer: footer
+                })
+            }
+
+            const error = function (c) {
+
+                const {
+                    msg = "",
+                    title = "",
+                    footer = ""
+                } = c;
+                Swal.fire({
+                    icon: 'error',
+                    title: title,
+                    text: msg,
+                    footer: footer
+                })
+            }
+
+            async function custom(c) {
+                const {
+                    msg = "",
+                    title = "",
+                } = c
+
+
+                const { value: formValues } = await Swal.fire({
+                    title: title,
+                    html: msg,
+                    backdrop: false,
+                    focusConfirm: false,
+                    showCancelButton: true,
+                    // lifecycle hook
+                    willOpen: () => {
+                        flatpickr('#start', {
+                            mode: 'range',
+                            plugins: [new rangePlugin({ input: "#end" })]
+                        })
+                    },
+                    // lifecycle hook
+                    preConfirm: () => {
+                        return [
+                            document.getElementById('start').value,
+                            document.getElementById('end').value
+                        ]
+                    },
+                    didOpen: () => {
+                        document.getElementById('start').removeAttribute('disabled')
+                        document.getElementById('end').removeAttribute('disabled')
+                    }
+                })
+
+                if (formValues) {
+                    Swal.fire(JSON.stringify(formValues))
+                }
+            }
+
+            return ({
+                toast: toast,
+                success: success,
+                error: error,
+                custom: custom
+            })
+        }
+    </script>
 </body>
 
 </html>
