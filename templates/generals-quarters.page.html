@@ -1,0 +1,66 @@
+{{ template "base" }}
+
+{{define "content" }}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <img src="/static/images/generals-quarters.png" alt="Generals Quarters"
+                class="img-fluid img-thumbnail mx-auto d-block image-size">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+
+            <h1 class="text-center mt-4">General's Quarters</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere et sint a obcaecati ex nemo neque
+                nesciunt suscipit, hic voluptatem quidem tempore ad necessitatibus consequatur! Voluptatibus
+                commodi
+                quo vero explicabo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
+                consequuntur
+                repellendus deleniti soluta sunt laudantium ea sapiente dolore quae, suscipit saepe beatae!
+                Inventore expedita ut itaque quisquam nemo doloremque! Asperiores!</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+            <a href="#!" id="check-availability-button" class="btn btn-success">Check Avilability</a>
+        </div>
+    </div>
+</div>
+
+{{ end }}
+
+{{define "js"}}
+<script>
+    const clickMe = document.getElementById('check-availability-button');
+    clickMe.addEventListener('click', () => {
+        // notify("This is my message !!!!", "success")
+        // notifyModal("Title", "<em>Hello world</em>", "success", "Click Me")
+        //Prompt().toast({ msg: "Hello world" })
+
+        const html = `
+                    
+                    <form id="checkAvailabilityForm" action="" method="post" novalidate class="needs-validation">
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-row" id="reservation-dates-modal">
+                                    <div class="col">
+                                        <input disabled required class="form-control" type="text" name="start" id="start" placeholder="Arrival" >
+                                    </div>
+                                    <div class="col">
+                                        <input disabled required class="form-control" type="text" name="end" id="end" placeholder="Departure" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                `
+        //Prompt().success({ msg: "Hello world", title: "Ola" })
+
+        Prompt().custom({ msg: html, title: 'Choose your dates' })
+    });
+
+</script>
+{{ end }}

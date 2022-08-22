@@ -12,7 +12,7 @@ import (
 	"github.com/grimyx/bookings/pkg/render"
 )
 
-const portNumber string = ":8080"
+const portNumber string = ":8081"
 
 var app config.AppConfig
 var session *scs.SessionManager

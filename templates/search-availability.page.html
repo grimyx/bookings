@@ -1,0 +1,37 @@
+{{ template "base" }}
+
+{{ define "content" }}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+
+            <h1 class="text-center mt-4">Search for Avilability</h1>
+            <form action="" class="needs-validation" id="foo" novalidate>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="start_date">Starting date</label>
+                            <input type="text" class="form-control" id="start_date" name="start_date"
+                                aria-describedby="startDateHelp" required>
+                            <small id="startDateHelp" class="form-text text-muted">Enter starting date in format
+                                YYYY-MM-DD</small>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="ending_date">Ending date</label>
+                            <input type="text" class="form-control" id="ending_date" name="ending_date"
+                                aria-describedby="startDateHelp" required>
+                            <small id="startDateHelp" class="form-text text-muted">Enter starting date in format
+                                YYYY-MM-DD</small>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary d-block mx-auto">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    {{ end }}
